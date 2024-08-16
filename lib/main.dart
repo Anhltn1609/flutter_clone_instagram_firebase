@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_instagram_clone_with_firebase/screen/login_screen.dart';
+import 'package:flutter_instagram_clone_with_firebase/auth/auth_screen.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 void main() {
@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: ScreenUtilInit(designSize: Size(375, 812), child: LoginScreen()),
+      home: ScreenUtilInit(designSize: Size(375, 812), child: AuthPage()),
     );
   }
 }

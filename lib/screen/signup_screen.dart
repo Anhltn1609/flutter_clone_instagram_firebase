@@ -2,19 +2,25 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class LoginScreen extends StatefulWidget {
+class SignupScreen extends StatefulWidget {
   final VoidCallback show;
-  const LoginScreen({required this.show, super.key});
+  const SignupScreen({required this.show, super.key});
 
   @override
-  State<LoginScreen> createState() => _LoginScreenState();
+  State<SignupScreen> createState() => _SignupScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
+class _SignupScreenState extends State<SignupScreen> {
   final email = TextEditingController();
   FocusNode email_F = FocusNode();
   final password = TextEditingController();
   FocusNode password_F = FocusNode();
+  final username = TextEditingController();
+  FocusNode username_F = FocusNode();
+  final bio = TextEditingController();
+  FocusNode bio_F = FocusNode();
+  final passwordConfirm = TextEditingController();
+  FocusNode passwordConfirm_F = FocusNode();
 
   @override
   Widget build(BuildContext context) {
@@ -23,18 +29,27 @@ class _LoginScreenState extends State<LoginScreen> {
       body: SingleChildScrollView(
         child: SafeArea(
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.end,
             children: <Widget>[
               SizedBox(
                 width: 96.w,
-                height: 100.h,
+                height: 30.h,
               ),
               Center(
                 child: SizedBox(
                     width: 200.w,
                     child: Image.asset('assets/images/Instagram_logo.png')),
               ),
-              SizedBox(height: 120.h),
+              SizedBox(height: 50.h),
+              Center(
+                child: CircleAvatar(
+                  radius: 34.r,
+                  backgroundColor: Colors.grey.shade200,
+                  backgroundImage: AssetImage('assets/images/avt_data.jpg'),
+                ),
+              ),
+              SizedBox(height: 30.h),
               TextFieldWidget(
                 controller: email,
                 focusNode: email_F,
@@ -43,17 +58,34 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
               SizedBox(height: 15.h),
               TextFieldWidget(
+                controller: username,
+                icon: Icons.person,
+                type: 'Username',
+                focusNode: username_F,
+              ),
+              SizedBox(height: 15.h),
+              TextFieldWidget(
+                controller: bio,
+                icon: Icons.abc,
+                type: 'Bio',
+                focusNode: bio_F,
+              ),
+              SizedBox(height: 15.h),
+              TextFieldWidget(
                 controller: password,
                 icon: Icons.lock,
                 type: 'Password',
                 focusNode: password_F,
               ),
-              SizedBox(
-                height: 10.h,
+              SizedBox(height: 15.h),
+              TextFieldWidget(
+                controller: passwordConfirm,
+                icon: Icons.lock,
+                type: 'Password',
+                focusNode: passwordConfirm_F,
               ),
-              ForgotWidget(),
-              SizedBox(height: 10.h),
-              Login(),
+              SizedBox(height: 20.h),
+              SignUp(),
               SizedBox(height: 10.h),
               Have()
             ],
@@ -63,14 +95,14 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 
-  Widget Have() {
+  Padding Have() {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 10.w),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
           Text(
-            'Don\'t have account   ',
+            'Do have account   ',
             style: TextStyle(
               fontSize: 13.sp,
               color: Colors.grey,
@@ -79,7 +111,7 @@ class _LoginScreenState extends State<LoginScreen> {
           GestureDetector(
             onTap: widget.show,
             child: Text(
-              'Sign up',
+              'Login',
               style: TextStyle(
                 fontSize: 15.sp,
                 color: Colors.blue,
@@ -92,7 +124,7 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 
-  Widget Login() {
+  Widget SignUp() {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 10.w),
       child: Container(
@@ -104,24 +136,13 @@ class _LoginScreenState extends State<LoginScreen> {
           borderRadius: BorderRadius.circular(10.r),
         ),
         child: Text(
-          'Log in',
+          'Sign Up',
           style: TextStyle(
             fontSize: 23.sp,
             color: Colors.white,
             fontWeight: FontWeight.bold,
           ),
         ),
-      ),
-    );
-  }
-
-  Widget ForgotWidget() {
-    return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 10.w),
-      child: Text(
-        'Forgot your password?',
-        style: TextStyle(
-            fontSize: 13.sp, color: Colors.blue, fontWeight: FontWeight.bold),
       ),
     );
   }
